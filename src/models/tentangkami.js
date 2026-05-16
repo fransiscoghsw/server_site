@@ -21,10 +21,6 @@ module.exports = (sequelize, DataTypes) => {
                     notEmpty: { msg: "Judul tidak boleh kosong!" },
                 },
             },
-            judulEn: {
-                type: DataTypes.STRING,
-                allowNull: true,
-            },
             image_background: DataTypes.STRING,
             deskripsi: {
                 type: DataTypes.TEXT,
@@ -33,10 +29,6 @@ module.exports = (sequelize, DataTypes) => {
                     notNull: { msg: "Deskripsi tidak boleh null!" },
                     notEmpty: { msg: "Deskripsi tidak boleh kosong!" },
                 },
-            },
-            deskripsiEn: {
-                type: DataTypes.TEXT,
-                allowNull: true,
             },
             createdBy: {
                 type: DataTypes.STRING,

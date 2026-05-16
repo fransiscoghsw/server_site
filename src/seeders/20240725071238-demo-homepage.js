@@ -21,8 +21,6 @@ module.exports = {
                 {
                     title: "Puyuh Sukaharja",
                     subTitle: "Membawa nutrisi besar dalam kemasan kecil",
-                    titleEn: "Sukaharja Quail",
-                    subTitleEn: "Bringing big nutrition in a small package",
                     image: faker.image.url(),
                     createdAt: new Date(),
                     updatedAt: new Date(),

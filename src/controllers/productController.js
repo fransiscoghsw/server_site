@@ -13,16 +13,7 @@ const {
 exports.create = async (req, res, next) => {
     const t = await sequelize.transaction();
     try {
-        const {
-            name,
-            nameEn,
-            description,
-            descriptionEn,
-            price,
-            quantity,
-            unitId,
-            urls,
-        } = req.body;
+        const { name, description, price, quantity, unitId, urls } = req.body;
 
         const dir = "public/assets/images/products/";
         const image = req.file ? req.file.buffer : null;
@@ -37,9 +28,7 @@ exports.create = async (req, res, next) => {
         const product = await Product.create(
             {
                 name,
-                nameEn,
                 description,
-                descriptionEn,
                 price,
                 quantity,
                 unitId,
@@ -65,47 +54,19 @@ exports.create = async (req, res, next) => {
 
 exports.findAll = async (req, res, next) => {
     try {
-        const { lang } = req.query;
         const products = await Product.findAll();
 
         let data;
 
-        if (lang === "id") {
-            // Jika lang = "id", hanya ambil versi Indonesia
-            data = products.map((product) => ({
-                id: product.id,
-                name: product.name,
-                description: product.description,
-                price: product.price,
-                quantity: product.quantity,
-                unitId: product.unitId,
-                image: product.image,
-            }));
-        } else if (lang === "en") {
-            // Jika lang = "en", hanya ambil versi Inggris
-            data = products.map((product) => ({
-                id: product.id,
-                name: product.nameEn,
-                description: product.descriptionEn,
-                price: product.price,
-                quantity: product.quantity,
-                unitId: product.unitId,
-                image: product.image,
-            }));
-        } else {
-            // Jika lang tidak ada, kembalikan semua kolom
-            data = products.map((product) => ({
-                id: product.id,
-                name: product.name,
-                nameEn: product.nameEn,
-                description: product.description,
-                descriptionEn: product.descriptionEn,
-                price: product.price,
-                quantity: product.quantity,
-                unitId: product.unitId,
-                image: product.image,
-            }));
-        }
+        data = products.map((product) => ({
+            id: product.id,
+            name: product.name,
+            description: product.description,
+            price: product.price,
+            quantity: product.quantity,
+            unitId: product.unitId,
+            image: product.image,
+        }));
 
         res.status(200).json({
             message: "Semua data Product berhasil didapat!",
@@ -119,7 +80,7 @@ exports.findAll = async (req, res, next) => {
 // Read one
 exports.findOne = async (req, res, next) => {
     try {
-        const { lang } = req.query; // Ambil bahasa dari query parameter
+        // Ambil bahasa dari query parameter
         const productId = req.params.id;
         const product = await Product.findOne({
             where: { id: productId },
@@ -130,43 +91,15 @@ exports.findOne = async (req, res, next) => {
         }
 
         let data;
-
-        if (lang === "id") {
-            // Jika lang = "id", hanya ambil versi Indonesia
-            data = {
-                id: product.id,
-                name: product.name,
-                description: product.description,
-                price: product.price,
-                quantity: product.quantity,
-                unitId: product.unitId,
-                image: product.image,
-            };
-        } else if (lang === "en") {
-            // Jika lang = "en", hanya ambil versi Inggris
-            data = {
-                id: product.id,
-                name: product.nameEn,
-                description: product.descriptionEn,
-                price: product.price,
-                quantity: product.quantity,
-                unitId: product.unitId,
-                image: product.image,
-            };
-        } else {
-            // Jika lang tidak ada, kembalikan semua kolom
-            data = {
-                id: product.id,
-                name: product.name,
-                nameEn: product.nameEn,
-                description: product.description,
-                descriptionEn: product.descriptionEn,
-                price: product.price,
-                quantity: product.quantity,
-                unitId: product.unitId,
-                image: product.image,
-            };
-        }
+        data = {
+            id: product.id,
+            name: product.name,
+            description: product.description,
+            price: product.price,
+            quantity: product.quantity,
+            unitId: product.unitId,
+            image: product.image,
+        };
 
         res.status(200).json({
             message: "Data Product berhasil didapat!",
@@ -181,16 +114,7 @@ exports.findOne = async (req, res, next) => {
 exports.update = async (req, res, next) => {
     const t = await sequelize.transaction();
     try {
-        const {
-            name,
-            nameEn, // Tambahkan nameEn
-            description,
-            descriptionEn, // Tambahkan descriptionEn
-            price,
-            quantity,
-            unitId,
-            urls,
-        } = req.body;
+        const { name, description, price, quantity, unitId, urls } = req.body;
         const image = req.file ? req.file.buffer : null;
 
         // Cari produk berdasarkan ID
@@ -215,9 +139,7 @@ exports.update = async (req, res, next) => {
         await product.update(
             {
                 name,
-                nameEn,
                 description,
-                descriptionEn,
                 price,
                 quantity,
                 unitId,
@@ -286,13 +208,11 @@ exports.getImageByName = (req, res) => {
 // Read all
 exports.getAllPublic = async (req, res, next) => {
     try {
-        const { lang } = req.query;
         const products = await Product.findAll({});
         const formattedProducts = products.map((product) => ({
             id: product.id,
-            name: lang === "en" ? product.nameEn : product.name,
-            description:
-                lang === "en" ? product.descriptionEn : product.description,
+            name: product.name,
+            description: product.description,
             price: product.price,
             quantity: product.quantity,
             unitId: product.unitId,
@@ -310,7 +230,7 @@ exports.getAllPublic = async (req, res, next) => {
 // Read one
 exports.getOnePublic = async (req, res, next) => {
     try {
-        const { lang } = req.query; // Ambil bahasa dari query parameter
+        // Ambil bahasa dari query parameter
         const productId = req.params.id;
         const product = await Product.findOne({
             where: { id: productId },
@@ -324,9 +244,8 @@ exports.getOnePublic = async (req, res, next) => {
             message: "Data Product berhasil didapat!",
             data: {
                 id: product.id,
-                name: lang === "en" ? product.nameEn : product.name,
-                description:
-                    lang === "en" ? product.descriptionEn : product.description,
+                name: product.name,
+                description: product.description,
                 price: product.price,
                 quantity: product.quantity,
                 unitId: product.unitId,

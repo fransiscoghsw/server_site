@@ -21,10 +21,6 @@ module.exports = (sequelize, DataTypes) => {
                     notEmpty: { msg: "Nama tidak boleh kosong!" },
                 },
             },
-            namaEn: {
-                type: DataTypes.STRING,
-                allowNull: true,
-            },
             file: {
                 type: DataTypes.STRING,
             },

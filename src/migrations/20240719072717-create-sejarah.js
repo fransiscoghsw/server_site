@@ -12,16 +12,8 @@ module.exports = {
             judul: {
                 type: Sequelize.STRING,
             },
-            judulEn: {
-                type: Sequelize.STRING,
-                allowNull: true,
-            },
             deskripsi: {
                 type: Sequelize.TEXT,
-            },
-            deskripsiEn: {
-                type: Sequelize.TEXT,
-                allowNull: true,
             },
             createdAt: {
                 allowNull: false,

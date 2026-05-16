@@ -20,10 +20,6 @@ module.exports = (sequelize, DataTypes) => {
                     notEmpty: { msg: "Data tidal boleh kosong!" },
                 },
             },
-            nameEn: {
-                type: DataTypes.STRING,
-                allowNull: true,
-            },
             description: {
                 type: DataTypes.TEXT,
                 allowNull: false,
@@ -31,10 +27,6 @@ module.exports = (sequelize, DataTypes) => {
                     notNull: { msg: "Data tidak boleh null!" },
                     notEmpty: { msg: "Data tidal boleh kosong!" },
                 },
-            },
-            descriptionEn: {
-                type: DataTypes.TEXT,
-                allowNull: true,
             },
             image: {
                 type: DataTypes.STRING,

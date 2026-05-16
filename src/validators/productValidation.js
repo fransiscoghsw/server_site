@@ -19,34 +19,12 @@ const createSchema = [
                 throw new Error("Nama sudah digunakan!");
             }
         }),
-    check("nameEn")
-        .trim()
-        .notEmpty()
-        .withMessage("Nama (inggris) Tidak Boleh Kosong!")
-        .isString()
-        .withMessage("Nama (inggris) harus berupa string!")
-        .isLength({ min: 1, max: 255 })
-        .withMessage("Nama (inggris) harus diantara 1 dan 255 karakter!")
-        .custom(async (value) => {
-            const nameEn = await Product.findOne({
-                where: { nameEn: value },
-            });
-            if (nameEn) {
-                throw new Error("Nama (inggris) sudah digunakan!");
-            }
-        }),
     check("description")
         .trim()
         .notEmpty()
         .withMessage("Deskripsi Tidak Boleh Kosong!")
         .isString()
         .withMessage("Deskripsi harus berupa string!"),
-    check("descriptionEn")
-        .trim()
-        .notEmpty()
-        .withMessage("Deskripsi (inggris) Tidak Boleh Kosong!")
-        .isString()
-        .withMessage("Deskripsi (inggris) harus berupa string!"),
     check("price")
         .trim()
         .notEmpty()
@@ -82,26 +60,6 @@ const updateSchema = [
                 throw new Error("Nama sudah digunakan!");
             }
         }),
-    check("nameEn")
-        .optional()
-        .trim()
-        .notEmpty()
-        .withMessage("Nama (inggris) Tidak Boleh Kosong!")
-        .isString()
-        .withMessage("Nama (inggris) harus berupa string!")
-        .isLength({ min: 1, max: 255 })
-        .withMessage("Nama (inggris) harus diantara 3 dan 255 karakter!")
-        .custom(async (value, { req }) => {
-            const existingUnit = await Product.findOne({
-                where: {
-                    nameEn: value,
-                    id: { [Op.ne]: req.params.id },
-                },
-            });
-            if (existingUnit) {
-                throw new Error("Nama (inggris) sudah digunakan!");
-            }
-        }),
     check("description")
         .optional()
         .trim()
@@ -109,13 +67,6 @@ const updateSchema = [
         .withMessage("Deskripsi Tidak Boleh Kosong!")
         .isString()
         .withMessage("Deskripsi harus berupa string!"),
-    check("descriptionEn")
-        .optional()
-        .trim()
-        .notEmpty()
-        .withMessage("Deskripsi (inggris) Tidak Boleh Kosong!")
-        .isString()
-        .withMessage("Deskripsi (inggris) harus berupa string!"),
     check("price")
         .optional()
         .trim()

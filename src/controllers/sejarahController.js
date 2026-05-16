@@ -3,7 +3,7 @@ const { Sejarah } = require("../models");
 // Upsert
 exports.upsert = async (req, res) => {
     try {
-        const { judul, judulEn, deskripsi, deskripsiEn } = req.body;
+        const { judul, deskripsi } = req.body;
 
         const sejarah = await Sejarah.findOne();
 
@@ -11,9 +11,7 @@ exports.upsert = async (req, res) => {
             const sejarah = await Sejarah.create(
                 {
                     judul,
-                    judulEn,
                     deskripsi,
-                    deskripsiEn,
                 },
                 {
                     user: req.user.username,
@@ -29,9 +27,7 @@ exports.upsert = async (req, res) => {
         await sejarah.update(
             {
                 judul,
-                judulEn,
                 deskripsi,
-                deskripsiEn,
             },
             {
                 where: { id: req.params.id },
@@ -65,8 +61,8 @@ exports.findData = async (req, res) => {
         const { lang } = req.query;
         const sejarah = await Sejarah.findOne();
         const formattedSejarah = {
-            judul: lang === "en" ? sejarah.judulEn : sejarah.judul,
-            deskripsi: lang === "en" ? sejarah.deskripsiEn : sejarah.deskripsi,
+            judul: sejarah.judul,
+            deskripsi: sejarah.deskripsi,
         };
 
         if (!sejarah) {
@@ -79,25 +75,8 @@ exports.findData = async (req, res) => {
         let responseData = {
             id: sejarah.id,
             judul: sejarah.judul,
-            judulEn: sejarah.judulEn,
             deskripsi: sejarah.deskripsi,
-            deskripsiEn: sejarah.deskripsiEn,
         };
-
-        // Jika ada query lang, filter sesuai aturan
-        if (lang === "id") {
-            responseData = {
-                id: sejarah.id,
-                judul: sejarah.judul,
-                deskripsi: sejarah.deskripsi,
-            };
-        } else if (lang === "en") {
-            responseData = {
-                id: sejarah.id,
-                judul: sejarah.judulEn,
-                deskripsi: sejarah.deskripsiEn,
-            };
-        }
 
         res.status(200).json({
             message: "Semua Data Sejarah",
@@ -125,8 +104,8 @@ exports.getAllPublic = async (req, res, next) => {
         }
 
         const formattedSejarah = {
-            judul: lang === "en" ? sejarah.judulEn : sejarah.judul,
-            deskripsi: lang === "en" ? sejarah.deskripsiEn : sejarah.deskripsi,
+            judul: sejarah.judul,
+            deskripsi: sejarah.deskripsi,
         };
 
         res.status(200).json({

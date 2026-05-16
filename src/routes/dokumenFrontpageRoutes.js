@@ -1,4 +1,3 @@
-// routes/artikelRoutes.js
 const express = require("express");
 const router = express.Router();
 const dokumenFrontpageController = require("../controllers/dokumenFrontpageController");

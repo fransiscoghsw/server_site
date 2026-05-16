@@ -37,14 +37,6 @@ module.exports = (sequelize, DataTypes) => {
                     },
                 },
             },
-            titleEn: {
-                type: DataTypes.STRING,
-                allowNull: true,
-            },
-            subTitleEn: {
-                type: DataTypes.STRING,
-                allowNull: true,
-            },
             image: DataTypes.STRING,
             createdBy: {
                 type: DataTypes.STRING,

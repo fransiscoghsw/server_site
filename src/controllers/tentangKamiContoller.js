@@ -12,7 +12,7 @@ const {
 // upsert
 exports.upsert = async (req, res) => {
     try {
-        const { judul, judulEn, deskripsi, deskripsiEn } = req.body;
+        const { judul, deskripsi } = req.body;
 
         const image_background = req.file ? req.file.buffer : null;
 
@@ -38,9 +38,7 @@ exports.upsert = async (req, res) => {
             const tentangkami = await TentangKami.create(
                 {
                     judul,
-                    judulEn,
                     deskripsi,
-                    deskripsiEn,
                     image_background: nama_gambar,
                 },
                 {
@@ -57,9 +55,7 @@ exports.upsert = async (req, res) => {
         await tentangkami.update(
             {
                 judul,
-                judulEn,
                 deskripsi,
-                deskripsiEn,
                 image_background: nama_gambar,
             },
             {
@@ -104,9 +100,7 @@ exports.findData = async (req, res) => {
         let responseData = {
             id: tentangkami.id,
             judul: tentangkami.judul,
-            judulEn: tentangkami.judulEn,
             deskripsi: tentangkami.deskripsi,
-            deskripsiEn: tentangkami.deskripsiEn,
             image_background: tentangkami.image_background,
         };
 
@@ -121,8 +115,6 @@ exports.findData = async (req, res) => {
         } else if (lang === "en") {
             responseData = {
                 id: tentangkami.id,
-                judul: tentangkami.judulEn,
-                deskripsi: tentangkami.deskripsiEn,
                 image_background: tentangkami.image_background,
             };
         }
@@ -158,13 +150,11 @@ exports.getImageByName = (req, res) => {
 // Read all
 exports.getAllPublic = async (req, res, next) => {
     try {
-        const { lang } = req.query;
         const tentangkami = await TentangKami.findOne();
         const formattedTentangKami = {
             id: tentangkami.id,
-            judul: lang === "en" ? tentangkami.judulEn : tentangkami.judul,
-            deskripsi:
-                lang === "en" ? tentangkami.deskripsiEn : tentangkami.deskripsi,
+            judul: tentangkami.judul,
+            deskripsi: tentangkami.deskripsi,
             image_background: tentangkami.image_background,
         };
         res.status(200).json({

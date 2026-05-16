@@ -12,16 +12,8 @@ module.exports = {
             pertanyaan: {
                 type: Sequelize.STRING,
             },
-            pertanyaanEn: {
-                type: Sequelize.STRING,
-                allowNull: true,
-            },
             jawaban: {
                 type: Sequelize.TEXT,
-            },
-            jawabanEn: {
-                type: Sequelize.TEXT,
-                allowNull: true,
             },
             status: {
                 type: Sequelize.ENUM("aktif", "tidak-aktif"),

@@ -21,10 +21,6 @@ module.exports = (sequelize, DataTypes) => {
                     notEmpty: { msg: "Judul tidak boleh kosong!" },
                 },
             },
-            judulEn: {
-                type: DataTypes.STRING,
-                allowNull: true,
-            },
             deskripsi: {
                 type: DataTypes.TEXT,
                 allowNull: false,
@@ -32,10 +28,6 @@ module.exports = (sequelize, DataTypes) => {
                     notNull: { msg: "Deskripsi tidak boleh null!" },
                     notEmpty: { msg: "Deskripsi tidak boleh kosong!" },
                 },
-            },
-            deskripsiEn: {
-                type: DataTypes.TEXT,
-                allowNull: true,
             },
             createdAt: DataTypes.DATE,
             updatedAt: DataTypes.DATE,

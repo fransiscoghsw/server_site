@@ -11,7 +11,7 @@ const ensureDir = (dir) => {
 // Create
 exports.create = async (req, res) => {
     try {
-        const { nama, namaEn, status } = req.body;
+        const { nama, status } = req.body;
         // If validation passes, proceed to save the file
         const file = req.file ? req.file.buffer : null;
 
@@ -25,7 +25,6 @@ exports.create = async (req, res) => {
         const dokumen = await DokumenFrontpage.create(
             {
                 nama,
-                namaEn,
                 status,
                 file: nama_file,
             },
@@ -57,11 +56,10 @@ exports.create = async (req, res) => {
 // Read All
 exports.findAll = async (req, res) => {
     try {
-        const { lang } = req.query;
         const dokumen = await DokumenFrontpage.findAll();
         const formattedDokumen = dokumen.map((dok) => ({
             id: dok.id,
-            nama: lang === "en" ? dok.namaEn : dok.nama,
+            nama: dok.nama,
             status: dok.status,
             file: dok.file,
         }));
@@ -80,7 +78,6 @@ exports.findAll = async (req, res) => {
 // Read One
 exports.findOne = async (req, res) => {
     try {
-        const { lang } = req.query;
         const dokumen = await DokumenFrontpage.findByPk(req.params.id);
         if (!dokumen) {
             return res.status(404).json({ message: "Dokumen tidak ada!" });
@@ -89,7 +86,7 @@ exports.findOne = async (req, res) => {
             message: "Dokumen berhasi diambil",
             data: {
                 id: dokumen.id,
-                nama: lang === "en" ? dokumen.namaEn : dokumen.nama,
+                nama: dokumen.nama,
                 status: dokumen.status,
                 file: dokumen.file,
             },
@@ -105,7 +102,7 @@ exports.findOne = async (req, res) => {
 // Update
 exports.update = async (req, res) => {
     try {
-        const { nama, namaEn, status } = req.body;
+        const { nama, status } = req.body;
         const file = req.file ? req.file.buffer : null;
 
         const dokumen = await DokumenFrontpage.findByPk(req.params.id);
@@ -132,7 +129,6 @@ exports.update = async (req, res) => {
         await dokumen.update(
             {
                 nama,
-                namaEn,
                 status,
                 file: nama_file,
             },

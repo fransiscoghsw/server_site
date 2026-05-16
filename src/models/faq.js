@@ -21,10 +21,6 @@ module.exports = (sequelize, DataTypes) => {
                     notEmpty: { msg: "Pertanyaan tidak boleh kosong!" },
                 },
             },
-            pertanyaanEn: {
-                type: DataTypes.STRING,
-                allowNull: true,
-            },
             jawaban: {
                 type: DataTypes.TEXT,
                 allowNull: false,
@@ -32,10 +28,6 @@ module.exports = (sequelize, DataTypes) => {
                     notNull: { msg: "Jawaban tidak boleh null!" },
                     notEmpty: { msg: "Jawaban tidak boleh kosong!" },
                 },
-            },
-            jawabanEn: {
-                type: DataTypes.TEXT,
-                allowNull: true,
             },
             status: {
                 type: DataTypes.ENUM("aktif", "tidak-aktif"),

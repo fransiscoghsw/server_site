@@ -17,14 +17,6 @@ module.exports = {
                 allowNull: false,
                 type: Sequelize.STRING,
             },
-            titleEn: {
-                allowNull: true,
-                type: Sequelize.STRING,
-            },
-            subTitleEn: {
-                allowNull: true,
-                type: Sequelize.STRING,
-            },
             image: {
                 allowNull: false,
                 type: Sequelize.STRING,

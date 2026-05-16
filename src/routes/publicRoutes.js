@@ -4,11 +4,9 @@ const router = express.Router();
 // START CONTROLLERS
 const homepageController = require("../controllers/homepageController");
 const productController = require("../controllers/productController");
-const artikelController = require("../controllers/artikelController");
 const tentangKamiContoller = require("../controllers/tentangKamiContoller");
 const sejarahController = require("../controllers/sejarahController");
 const faqController = require("../controllers/faqController");
-const founderController = require("../controllers/founderController");
 const dokumentasiFrontapageController = require("../controllers/dokumentasiFrontapageController");
 const kontakFrontpageController = require("../controllers/kontakFrontpageController");
 const sosialMediaController = require("../controllers/sosialMediaController");
@@ -25,11 +23,6 @@ router.get("/products", productController.getAllPublic);
 router.get("/product/:id", productController.getOnePublic);
 router.get("/product/image/:imageName", productController.getImageByNamePublic);
 
-//* Artikels
-router.get("/articles", artikelController.getAllPublic);
-router.get("/article/:slug", artikelController.getOneBySlugPublic);
-router.get("/article/image/:imageName", artikelController.getImageByNamePublic);
-
 //* About Us
 router.get("/aboutUs", tentangKamiContoller.getAllPublic);
 router.get(
@@ -43,11 +36,6 @@ router.get("/history", sejarahController.getAllPublic);
 //* FAQ
 router.get("/faqs", faqController.getAllPublic);
 router.get("/faq/:id", faqController.getOnePublic);
-
-//* Founder
-router.get("/founders", founderController.getAllPublic);
-router.get("/founder/:id", founderController.getOnePublic);
-router.get("/founder/image/:imageName", founderController.getImageByNamePublic);
 
 //* Documentation
 router.get("/documentations", dokumentasiFrontapageController.getAllPublic);

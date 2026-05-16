@@ -14,16 +14,8 @@ module.exports = {
                 allowNull: false,
                 unique: true,
             },
-            nameEn: {
-                type: Sequelize.STRING,
-                allowNull: true,
-            },
             description: {
                 type: Sequelize.TEXT,
-            },
-            descriptionEn: {
-                type: Sequelize.TEXT,
-                allowNull: true,
             },
             image: {
                 type: Sequelize.STRING,

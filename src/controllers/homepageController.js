@@ -13,7 +13,7 @@ const { encrypt, decrypt } = require("../utils/encryption");
 // Upsert
 exports.upsert = async (req, res) => {
     try {
-        const { title, subTitle, titleEn, subTitleEn } = req.body;
+        const { title, subTitle } = req.body;
         const image = req.file ? req.file.buffer : null;
         const dir = "public/images/homepage";
 
@@ -31,8 +31,6 @@ exports.upsert = async (req, res) => {
                 {
                     title,
                     subTitle,
-                    titleEn,
-                    subTitleEn,
                     image: imageName,
                 },
                 {
@@ -48,8 +46,6 @@ exports.upsert = async (req, res) => {
             {
                 title,
                 subTitle,
-                titleEn,
-                subTitleEn,
                 image: imageName,
             },
             {
@@ -80,7 +76,6 @@ exports.upsert = async (req, res) => {
 // Read All
 exports.findData = async (req, res) => {
     try {
-        const { lang } = req.query;
         const homepage = await CmsHomepage.findOne();
 
         if (!homepage) {
@@ -93,28 +88,9 @@ exports.findData = async (req, res) => {
         let responseData = {
             id: encryptedId,
             title: homepage.title,
-            titleEn: homepage.titleEn,
             subTitle: homepage.subTitle,
-            subTitleEn: homepage.subTitleEn,
             image: homepage.image,
         };
-
-        // Jika ada query lang, filter sesuai aturan
-        if (lang === "id") {
-            responseData = {
-                id: encryptedId,
-                title: homepage.title,
-                subTitle: homepage.subTitle,
-                image: homepage.image,
-            };
-        } else if (lang === "en") {
-            responseData = {
-                id: encryptedId,
-                title: homepage.titleEn,
-                subTitle: homepage.subTitleEn,
-                image: homepage.image,
-            };
-        }
 
         res.status(200).json({
             message: "Beranda berhasil diambil",
@@ -168,7 +144,6 @@ exports.getImageByName = async (req, res) => {
 // GET All
 exports.getAllPublic = async (req, res) => {
     try {
-        const { lang } = req.query;
         const homepage = await CmsHomepage.findOne();
 
         if (!homepage) {
@@ -181,9 +156,8 @@ exports.getAllPublic = async (req, res) => {
             message: "Beranda berhasil diambil",
             data: {
                 id: encryptedId,
-                title: lang === "en" ? homepage.titleEn : homepage.title,
-                subTitle:
-                    lang === "en" ? homepage.subTitleEn : homepage.subTitle,
+                title: homepage.title,
+                subTitle: homepage.subTitle,
                 image: homepage.image,
             },
         });
