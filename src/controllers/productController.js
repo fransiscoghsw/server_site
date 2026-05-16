@@ -13,7 +13,7 @@ const {
 exports.create = async (req, res, next) => {
     const t = await sequelize.transaction();
     try {
-        const { name, description, price, quantity, unitId, urls } = req.body;
+        const { name, description } = req.body;
 
         const dir = "public/assets/images/products/";
         const image = req.file ? req.file.buffer : null;
@@ -29,9 +29,6 @@ exports.create = async (req, res, next) => {
             {
                 name,
                 description,
-                price,
-                quantity,
-                unitId,
                 image: imageName,
             },
             {
@@ -62,9 +59,6 @@ exports.findAll = async (req, res, next) => {
             id: product.id,
             name: product.name,
             description: product.description,
-            price: product.price,
-            quantity: product.quantity,
-            unitId: product.unitId,
             image: product.image,
         }));
 
@@ -95,9 +89,6 @@ exports.findOne = async (req, res, next) => {
             id: product.id,
             name: product.name,
             description: product.description,
-            price: product.price,
-            quantity: product.quantity,
-            unitId: product.unitId,
             image: product.image,
         };
 
@@ -114,7 +105,7 @@ exports.findOne = async (req, res, next) => {
 exports.update = async (req, res, next) => {
     const t = await sequelize.transaction();
     try {
-        const { name, description, price, quantity, unitId, urls } = req.body;
+        const { name, description } = req.body;
         const image = req.file ? req.file.buffer : null;
 
         // Cari produk berdasarkan ID
@@ -140,9 +131,6 @@ exports.update = async (req, res, next) => {
             {
                 name,
                 description,
-                price,
-                quantity,
-                unitId,
                 image: imageName,
             },
             {
@@ -213,9 +201,6 @@ exports.getAllPublic = async (req, res, next) => {
             id: product.id,
             name: product.name,
             description: product.description,
-            price: product.price,
-            quantity: product.quantity,
-            unitId: product.unitId,
             image: product.image,
         }));
         res.status(200).json({
@@ -246,9 +231,6 @@ exports.getOnePublic = async (req, res, next) => {
                 id: product.id,
                 name: product.name,
                 description: product.description,
-                price: product.price,
-                quantity: product.quantity,
-                unitId: product.unitId,
                 image: product.image,
             },
         });

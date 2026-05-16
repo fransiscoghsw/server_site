@@ -25,18 +25,6 @@ const createSchema = [
         .withMessage("Deskripsi Tidak Boleh Kosong!")
         .isString()
         .withMessage("Deskripsi harus berupa string!"),
-    check("price")
-        .trim()
-        .notEmpty()
-        .withMessage("Price Tidak Boleh Kosong!")
-        .isNumeric()
-        .withMessage("Price harus berupa angka!"),
-    check("quantity")
-        .trim()
-        .notEmpty()
-        .withMessage("Qty Tidak Boleh Kosong!")
-        .isNumeric()
-        .withMessage("Qty harus berupa angkat!"),
 ];
 
 const updateSchema = [
@@ -67,20 +55,6 @@ const updateSchema = [
         .withMessage("Deskripsi Tidak Boleh Kosong!")
         .isString()
         .withMessage("Deskripsi harus berupa string!"),
-    check("price")
-        .optional()
-        .trim()
-        .notEmpty()
-        .withMessage("Harga Tidak Boleh Kosong!")
-        .isNumeric()
-        .withMessage("Harga harus berupa angka!"),
-    check("quantity")
-        .optional()
-        .trim()
-        .notEmpty()
-        .withMessage("Qty Tidak Boleh Kosong!")
-        .isNumeric()
-        .withMessage("Qty harus berupa angkat!"),
 ];
 
 module.exports = {

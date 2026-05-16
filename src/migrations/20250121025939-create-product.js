@@ -20,12 +20,6 @@ module.exports = {
             image: {
                 type: Sequelize.STRING,
             },
-            price: {
-                type: Sequelize.INTEGER,
-            },
-            quantity: {
-                type: Sequelize.INTEGER,
-            },
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE,

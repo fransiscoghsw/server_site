@@ -36,22 +36,6 @@ module.exports = (sequelize, DataTypes) => {
                     notEmpty: { msg: "Data tidal boleh kosong!" },
                 },
             },
-            price: {
-                type: DataTypes.INTEGER,
-                allowNull: false,
-                validate: {
-                    notNull: { msg: "Data tidak boleh null!" },
-                    notEmpty: { msg: "Data tidal boleh kosong!" },
-                },
-            },
-            quantity: {
-                type: DataTypes.INTEGER,
-                allowNull: false,
-                validate: {
-                    notNull: { msg: "Data tidak boleh null!" },
-                    notEmpty: { msg: "Data tidal boleh kosong!" },
-                },
-            },
             createdBy: {
                 type: DataTypes.STRING,
                 allowNull: false,
