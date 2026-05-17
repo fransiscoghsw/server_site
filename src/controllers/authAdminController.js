@@ -47,10 +47,10 @@ exports.login = async (req, res, next) => {
             // Verifikasi kadaluarsa refresh token
             try {
                 jwt.verify(admin.refreshToken, process.env.REFRESH_SECRET_KEY);
-                return res.status(403).json({
-                    message:
-                        "Anda sudah login di perangkat lain. Silakan logout terlebih dahulu.",
-                });
+                // return res.status(403).json({
+                //     message:
+                //         "Anda sudah login di perangkat lain. Silakan logout terlebih dahulu.",
+                // });
             } catch (err) {
                 // Jika kadaluarsa, hapus token dari database
                 if (err.name === "TokenExpiredError") {
