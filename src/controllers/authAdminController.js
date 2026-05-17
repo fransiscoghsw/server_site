@@ -47,10 +47,6 @@ exports.login = async (req, res, next) => {
             // Verifikasi kadaluarsa refresh token
             try {
                 jwt.verify(admin.refreshToken, process.env.REFRESH_SECRET_KEY);
-                // return res.status(403).json({
-                //     message:
-                //         "Anda sudah login di perangkat lain. Silakan logout terlebih dahulu.",
-                // });
             } catch (err) {
                 // Jika kadaluarsa, hapus token dari database
                 if (err.name === "TokenExpiredError") {
@@ -71,16 +67,16 @@ exports.login = async (req, res, next) => {
 
         res.cookie("accessToken", accessToken, {
             httpOnly: true,
-            secure: true,
-            sameSite: "Strict",
-            maxAge: 15 * 60 * 1000, // 15 menit
-            // maxAge: 24 * 60 * 60 * 1000, // 1 hari
+            secure: false,
+            sameSite: "lax",
+            maxAge: 15 * 60 * 1000,
         });
+
         res.cookie("refreshToken", refreshToken, {
             httpOnly: true,
-            secure: true,
-            sameSite: "Strict",
-            maxAge: 24 * 60 * 60 * 1000, // 1 hari
+            secure: false,
+            sameSite: "lax",
+            maxAge: 24 * 60 * 60 * 1000,
         });
 
         res.status(200).json({ message: "Login Berhasil", accessToken });
@@ -212,12 +208,11 @@ exports.refreshToken = async (req, res, next) => {
                     storedToken.role.name,
                 );
 
-                res.cookie("accessToken", newAccessToken, {
+                res.cookie("accessToken", accessToken, {
                     httpOnly: true,
-                    secure: true,
-                    sameSite: "Strict",
-                    maxAge: 15 * 60 * 1000, // 15 menit
-                    // maxAge: 24 * 60 * 60 * 1000, // 1 hari
+                    secure: false,
+                    sameSite: "lax",
+                    maxAge: 15 * 60 * 1000,
                 });
 
                 res.status(200).json({ accessToken: newAccessToken });
