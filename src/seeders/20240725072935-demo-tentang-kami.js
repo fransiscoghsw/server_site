@@ -18,9 +18,9 @@ module.exports = {
             "TentangKamis",
             [
                 {
-                    judul: "SUKAHARJA QUAIL INDONESIA",
+                    judul: "PT. KEMBAR MEDIKA SAFETY",
                     deskripsi:
-                        "Burung puyuh adalah perwujudan kekuatan besar dari ruang kecil. Dengan tubuhnya yang kecil, puyuh bisa menghasilkan sampai 300 butir telur dalam setahun. Ukuran mereka tidak menjadi hambatan untuk menghasilkan sumber nutrisi tinggi dalam jumlah yang banyak. Terkenal karena dagingnya yang ramping dan empuk, burung puyuh menawarkan alternatif yang kaya protein dibandingkan unggas tradisional, kaya akan asam amino esensial yang penting untuk perbaikan dan pertumbuhan otot. Telurnya, meskipun ukurannya kecil, mengandung proporsi vitamin dan mineral yang lebih tinggi dibandingkan telur ayam, menjadikannya tambahan padat nutrisi untuk makanan apa pun. \n\n Potensi pengembangan gizi yang ditawarkan oleh puyuh sangatlah besar. Maka dari itu, PT Sukaharja Quail Indonesia berkomitmen untuk menggerakan industri peternakan puyuh dan pengembangan nutrisi masyarakat Indonesia. PT SQI ingin memenuhi permintaan masyarakat terhadap telur puyuh di rumah tangga dan pasar. Menjadi entitas yang memberdayakan ternak dan gizi masyarakat Indonesia.",
+                        "PT. Kembar Medika Safety is a distributor and supplier of industrial agricultural machinery, household appliances, wholesalers of computers and computer equipment, as well as wholesalers of other software.",
                     image_background: faker.image.url(),
                     createdAt: new Date(),
                     updatedAt: new Date(),

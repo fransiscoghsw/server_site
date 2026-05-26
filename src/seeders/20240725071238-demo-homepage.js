@@ -19,8 +19,9 @@ module.exports = {
             "CmsHomepages",
             [
                 {
-                    title: "Puyuh Sukaharja",
-                    subTitle: "Membawa nutrisi besar dalam kemasan kecil",
+                    title: "PT. KEMBAR MEDIKA SAFETY",
+                    subTitle:
+                        "PT. Kembar Medika Safety is a distributor and supplier of industrial agricultural machinery, household appliances, wholesalers of computers and computer equipment, as well as wholesalers of other software.",
                     image: faker.image.url(),
                     createdAt: new Date(),
                     updatedAt: new Date(),

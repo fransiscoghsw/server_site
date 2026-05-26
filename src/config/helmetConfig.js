@@ -62,12 +62,12 @@ module.exports = () => {
                 imgSrc: [
                     "'self'",
                     "data:", // untuk base64 image (foto profil dsb)
-                    "https://api.sukaquail.com", // CDN gambar (ganti jika beda)
-                    "https://sukaquail.com", // contoh tambahan
+                    "https://api.kembarmedikasafety.web.id", // CDN gambar (ganti jika beda)
+                    "https://kembarmedikasafety.web.id", // contoh tambahan
                 ],
                 connectSrc: [
                     "'self'",
-                    "https://api.sukaquail.com", // API kamu
+                    "https://api.kembarmedikasafety.web.id", // API kamu
                 ],
                 objectSrc: ["'none'"],
                 baseUri: ["'self'"],
