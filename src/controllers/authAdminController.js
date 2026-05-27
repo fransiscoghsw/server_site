@@ -69,14 +69,14 @@ exports.login = async (req, res, next) => {
             httpOnly: true,
             secure: false,
             sameSite: "lax",
-            maxAge: 15 * 60 * 1000,
+            maxAge: 30 * 24 * 60 * 60 * 1000,
         });
 
         res.cookie("refreshToken", refreshToken, {
             httpOnly: true,
             secure: false,
             sameSite: "lax",
-            maxAge: 24 * 60 * 60 * 1000,
+            maxAge: 30 * 24 * 60 * 60 * 1000,
         });
 
         res.status(200).json({ message: "Login Berhasil", accessToken });
@@ -212,7 +212,7 @@ exports.refreshToken = async (req, res, next) => {
                     httpOnly: true,
                     secure: false,
                     sameSite: "lax",
-                    maxAge: 15 * 60 * 1000,
+                    maxAge: 30 * 24 * 60 * 60 * 1000,
                 });
 
                 res.status(200).json({ accessToken: newAccessToken });
